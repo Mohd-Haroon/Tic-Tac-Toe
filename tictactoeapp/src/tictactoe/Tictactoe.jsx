@@ -6,10 +6,10 @@ export const Tictactoe = () => {
   const [cell, setCell] = React.useState(["", "", "", "", "", "", "", "", ""]);
   const [win, setWin] = React.useState(null);
   const [gamerunning, setIsGameRunning] = React.useState(false);
-  const [count,setcount] = React.useState(0);
+  const [count, setcount] = React.useState(0);
 
   const handleClick = (id) => {
-    setcount(count+1)
+    setcount(count + 1);
     // console.log("count",count)
     if (cell[id] !== "") {
       alert("already done!");
@@ -57,10 +57,9 @@ export const Tictactoe = () => {
           // console.log("winbox",win)
           setIsGameRunning(!gamerunning);
           // reset();
-        }
-        else if(count===8){
+        } else if (count === 8) {
           setWin("Draw");
-          setcount(0)
+          setcount(0);
           setIsGameRunning(!gamerunning);
         }
       });
@@ -71,35 +70,37 @@ export const Tictactoe = () => {
     setWin(null);
     setCell(["", "", "", "", "", "", "", "", ""]);
     setTurn("X");
-    setcount(0)
+    setcount(0);
   };
   return (
-    <div style={{border: "5px solid Black",height:"400px"}}>
+    <div style={{ border: "5px solid Black", height: "400px",width:"400px",margin:'auto' }}>
       {gamerunning ? (
         <>
           <div
             style={{
-              width: "50%",
+              width: "100%",
               margin: "auto",
+              marginTop:'20px'
               // border: "1px solid red",
-              padding: "15px",
+              // padding: "15px",
             }}
           >
             <div
               style={{
-                width: "60%",
+                width: "100%",
                 margin: "auto",
                 // border: "1px solid yellow",
-                padding: "10px",
-                alignItems:"center"
+                // padding: "10px",
+                alignItems: "center",
               }}
             >
               <div
                 style={{
                   display: "flex",
-                  width: "80%",
+                  width: "200px",
                   margin: "auto",
                   gap: "10px",
+                  // border: "1px solid black",
                   justifyContent: "centre",
                 }}
               >
@@ -113,9 +114,11 @@ export const Tictactoe = () => {
               <div
                 style={{
                   display: "flex",
-                  width: "80%",
-                  gap: "10px",
+                  width: "200px",
                   margin: "auto",
+                  gap: "10px",
+                  // border: "1px solid black",
+                  justifyContent: "centre",
                 }}
               >
                 <Cell handleClick={handleClick} cell={cell[3]} id={3} />
@@ -128,9 +131,11 @@ export const Tictactoe = () => {
               <div
                 style={{
                   display: "flex",
-                  width: "80%",
-                  gap: "10px",
+                  width: "200px",
                   margin: "auto",
+                  gap: "10px",
+                  // border: "1px solid black",
+                  justifyContent: "centre",
                 }}
               >
                 <Cell handleClick={handleClick} cell={cell[6]} id={6} />
@@ -139,20 +144,64 @@ export const Tictactoe = () => {
 
                 <Cell handleClick={handleClick} cell={cell[8]} id={8} />
               </div>
-              
             </div>
           </div>
-
-          <h2>TURN : Player-{turn}</h2>
-          <button style={{padding:"10px 20px",borderRadius:"5px",backgroundColor:"teal",color:"white"}} onClick={() => reset()}>Reset Game</button>
+          <div >
+            <h2>TURN : Player-{turn}</h2>
+            <button
+              style={{
+                padding: "10px 20px",
+                borderRadius: "5px",
+                backgroundColor: "teal",
+                color: "white",
+              }}
+              onClick={() => reset()}
+            >
+              Reset Game
+            </button>
+          </div>
         </>
       ) : (
         <>
-        {win?<h1 style={{color: 'black'}}>Match result: {win}</h1>:""}
-        {win?<div style={{padding: '3px',borderRadius:"8px",width: "150px",margin: "auto",backgroundColor:"teal",color:"white",fontSize:"30px"}} onClick={()=>{setIsGameRunning(!gamerunning);reset()}}>Play Again</div>
-        :<div style={{padding: '3px',borderRadius:"8px",width: "100px",margin: "auto",backgroundColor:"teal",color:"white",fontSize:"30px"}} onClick={()=>{setIsGameRunning(!gamerunning);reset()}}> Start</div>
-        }
-        
+          {win ? <h1 style={{ color: "black" }}>Match result: {win}</h1> : ""}
+          {win ? (
+            <div
+              style={{
+                padding: "3px",
+                borderRadius: "8px",
+                width: "150px",
+                margin: "auto",
+                backgroundColor: "teal",
+                color: "white",
+                fontSize: "30px",
+              }}
+              onClick={() => {
+                setIsGameRunning(!gamerunning);
+                reset();
+              }}
+            >
+              Play Again
+            </div>
+          ) : (
+            <div
+              style={{
+                padding: "3px",
+                borderRadius: "8px",
+                width: "100px",
+                margin: "auto",
+                backgroundColor: "teal",
+                color: "white",
+                fontSize: "30px",
+              }}
+              onClick={() => {
+                setIsGameRunning(!gamerunning);
+                reset();
+              }}
+            >
+              {" "}
+              Start
+            </div>
+          )}
         </>
       )}
     </div>
